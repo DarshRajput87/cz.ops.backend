@@ -1,21 +1,10 @@
 import { Server } from 'socket.io'
+import { socketCorsOptions } from './cors.js'
 
 let io
 
 export function initSocket(server) {
-  io = new Server(server, {
-    cors: {
-      origin: [
-        'http://localhost:3000',
-        'http://localhost:5173',
-        'https://chargezoneops.online',
-        'https://www.chargezoneops.online',
-        'https://cz-ops-frontend.vercel.app',
-      ],
-      methods: ['GET', 'POST', 'PATCH'],
-      credentials: true,
-    }
-  })
+  io = new Server(server, { cors: socketCorsOptions })
 
   io.on('connection', (socket) => {
     console.log('Socket connected:', socket.id)

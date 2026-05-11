@@ -11,25 +11,12 @@ import customerRoutes from './modules/customer/customer.routes.js'
 import userRoutes     from './modules/user/user.routes.js'
 import slotBookingRoutes from './modules/slot-booking/slot-booking.routes.js'
 import { startReviewAnalysisJob } from './modules/tickets/jobs/reviewAnalysis.job.js'
+import { corsOptions } from './core/cors.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const app = express()
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://chargezoneops.online',
-  'https://www.chargezoneops.online',
-  'https://cz-ops-frontend.vercel.app',
-]
-const corsOptions = {
-  origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
-    cb(new Error(`CORS blocked: ${origin}`))
-  },
-  credentials: true,
-}
 app.options('*', cors(corsOptions))
 app.use(cors(corsOptions))
 app.use(express.json())
