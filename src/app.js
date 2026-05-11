@@ -23,13 +23,15 @@ const allowedOrigins = [
   'https://www.chargezoneops.online',
   'https://cz-ops-frontend.vercel.app',
 ]
-app.use(cors({
+const corsOptions = {
   origin: (origin, cb) => {
     if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
     cb(new Error(`CORS blocked: ${origin}`))
   },
   credentials: true,
-}))
+}
+app.options('*', cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
