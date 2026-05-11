@@ -47,3 +47,4 @@ startReviewAnalysisJob()
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'ChargeNexus API' }))
 
 export default app
+console.log("Deployment test");
