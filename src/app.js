@@ -16,7 +16,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const app = express()
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'https://chargezoneops.online',
+  'https://www.chargezoneops.online',
+  'https://cz-ops-frontend.vercel.app',
+]
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
+    cb(new Error(`CORS blocked: ${origin}`))
+  },
+  credentials: true,
+}))
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 

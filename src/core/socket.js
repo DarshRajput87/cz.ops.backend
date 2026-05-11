@@ -5,9 +5,15 @@ let io
 export function initSocket(server) {
   io = new Server(server, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'https://chargezoneops.online',
+        'https://www.chargezoneops.online',
+        'https://cz-ops-frontend.vercel.app',
+      ],
       methods: ['GET', 'POST', 'PATCH'],
-      credentials: true
+      credentials: true,
     }
   })
 
