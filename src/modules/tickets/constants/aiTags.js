@@ -1,0 +1,7 @@
+export const AI_CLASSIFICATION_TAGS = Object.freeze({
+  SPAM:          'SPAM',
+  URGENT_ALERT:  'URGENT_ALERT',
+  DUPLICATE:     'DUPLICATE',
+  OUT_OF_SCOPE:  'OUT_OF_SCOPE',
+  REDUNDANT:     'REDUNDANT',
+})
